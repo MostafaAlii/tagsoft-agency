@@ -1,28 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core\Traits;
 
-use Illuminate\Support\Str;
+use Core\Helpers\UuidHelper;
 
 trait HasUuid
 {
     protected static function bootHasUuid(): void
     {
         static::creating(function ($model) {
-            $keyName = $model->getKeyName();
-            if (empty($model->{$keyName})) {
-                $model->{$keyName} = (string) Str::uuid();
+            if (empty($model->uuid)) {
+                $model->uuid = UuidHelper::generate();
             }
         });
     }
 
-    public function getIncrementing(): bool
+    public function resolveRouteBinding($value, $field = null)
     {
-        return false;
+        return $this->where('uuid', $value)->firstOrFail();
     }
 
-    public function getKeyType(): string
+    public function getRouteKeyName(): string
     {
-        return 'string';
+        return 'uuid';
     }
 }
