@@ -10,6 +10,7 @@ class AuthenticationServiceProvider extends ServiceProvider {
     }
 
     public function boot(): void {
+        $this->loadTranslationsFrom(module_path($this->moduleName, 'lang'),'authentication');
         $this->loadMigrationsFrom(module_path($this->moduleName, 'database/migrations'));
         Route::prefix('api')->middleware('api')->group(module_path($this->moduleName, 'routes/api.php'));
     }

@@ -1,0 +1,96 @@
+Modules/
+└── Authentication/
+    │
+    ├── app/
+    │   │
+    │   ├── Actions/
+    │   │   ├── LoginAction.php                    [DONE]
+    │   │   ├── LogoutAction.php                   [DONE]
+    │   │   ├── RefreshTokenAction.php             [DONE]
+    │   │   ├── MeAction.php                       [DONE]
+    │   │   ├── ForgotPasswordAction.php           [P0]
+    │   │   ├── ResetPasswordAction.php            [P0]
+    │   │   ├── ChangePasswordAction.php            [P1]
+    │   │   └── ConfirmPasswordAction.php           [P2]
+    │   │
+    │   ├── DTOs/
+    │   │   ├── LoginDTO.php                        [DONE]
+    │   │   ├── ForgotPasswordDTO.php               [P0]
+    │   │   ├── ResetPasswordDTO.php                [P0]
+    │   │   ├── ChangePasswordDTO.php               [P1]
+    │   │   └── ConfirmPasswordDTO.php              [P2]
+    │   │
+    │   ├── Contracts/
+    │   │   ├── PasswordManagerInterface.php        [P0]
+    │   │   ├── PasswordBrokerInterface.php         [P0]
+    │   │   ├── PasswordPolicyInterface.php         [P1]
+    │   │   └── PasswordSecurityInterface.php       [P2]
+    │   │
+    │   ├── Services/
+    │   │   ├── PasswordManager.php                 [P0]
+    │   │   ├── PasswordBroker.php                  [P0]
+    │   │   ├── PasswordPolicy.php                  [P1]
+    │   │   └── PasswordSecurity.php                [P2]
+    │   │
+    │   ├── ValueObjects/
+    │   │   └── Password.php                         [P2]
+    │   │
+    │   ├── Strategies/
+    |   │   ├── Contracts/
+    |   |   |   └── AuthGuardStrategyInterface.php  [DONE]
+    │   │   ├── AbstractJwtGuardStrategy.php        [DONE]
+    │   │   ├── AdminGuardStrategy.php              [DONE]
+    │   │   ├── ClientGuardStrategy.php             [DONE]
+    │   │   └── EmployeeGuardStrategy.php           [DONE]
+    │   │
+    │   ├── Notifications/
+    │   │   └── PasswordResetNotification.php       [P0]
+    │   │
+    │   ├── Events/
+    │   │   ├── PasswordResetRequested.php          [P1]
+    │   │   ├── PasswordReset.php                   [P1]
+    │   │   └── PasswordChanged.php                 [P1]
+    │   │
+    │   ├── Exceptions/
+    │   │   ├── PasswordException.php               [P1]
+    │   │   ├── InvalidPasswordException.php        [P1]
+    │   │   ├── PasswordPolicyException.php         [P1]
+    │   │   └── PasswordResetException.php          [P1]
+    │   │
+    │   └── Http/
+    │       ├── Controllers/
+    │       │   ├── AdminAuthController.php         [DONE]
+    │       │   ├── ClientAuthController.php        [DONE]
+    │       │   ├── EmployeeAuthController.php      [DONE]
+    │       │   └── PasswordController.php          [P0]
+    │       │
+    │       ├── Requests/
+    │       │   ├── LoginRequest.php                [DONE]
+    │       │   ├── ForgotPasswordRequest.php       [P0]
+    │       │   ├── ResetPasswordRequest.php        [P0]
+    │       │   ├── ChangePasswordRequest.php       [P1]
+    │       │   └── ConfirmPasswordRequest.php      [P2]
+    │
+    ├── config/
+    │   └── authentication.php
+    │
+    ├── routes/
+    │   └── api.php
+    │
+    └── tests/
+        ├── Feature/
+        │   ├── Login/
+        │   ├── Logout/
+        │   ├── Refresh/
+        │   ├── Password/
+        │   │   ├── ForgotPasswordTest.php         [P0]
+        │   │   ├── ResetPasswordTest.php          [P0]
+        │   │   ├── ChangePasswordTest.php         [P1]
+        │   │   └── ConfirmPasswordTest.php        [P2]
+        │   └── Guards/
+        │
+        └── Unit/
+            ├── PasswordManagerTest.php             [P0]
+            ├── PasswordBrokerTest.php              [P0]
+            ├── PasswordPolicyTest.php              [P1]
+            └── PasswordSecurityTest.php            [P2]
