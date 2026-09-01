@@ -7,4 +7,8 @@ return [
     'invalid_reset_token'      => 'رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية.',
     'password_reset_throttled' => 'برجاء الانتظار قبل طلب إعادة تعيين كلمة المرور مرة أخرى.',
     'password_reset_success'   => 'تم إعادة تعيين كلمة المرور بنجاح.',
+
+    'password_policy_failed' => 'كلمة المرور لا تفي بمتطلبات الأمان.',
+    'current_password_incorrect' => 'كلمة المرور الحالية غير صحيحة.',
+    'password_changed_success' => 'تم تغيير كلمة المرور بنجاح.',
 ];

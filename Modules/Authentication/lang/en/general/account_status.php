@@ -7,4 +7,8 @@ return [
     'invalid_reset_token'      => 'This password reset token is invalid or has expired.',
     'password_reset_throttled' => 'Please wait before requesting another password reset.',
     'password_reset_success'   => 'Your password has been reset successfully.',
+
+    'password_policy_failed' => 'The password does not meet the security requirements.',
+    'current_password_incorrect' => 'The current password is incorrect.',
+    'password_changed_success' => 'Your password has been changed successfully.',
 ];

@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tymon\JWTAuth\Exceptions\{JWTException,TokenExpiredException,TokenInvalidException};
 use Throwable;
 use Core\Contracts\HasHttpStatusException;
+use Authentication\Exceptions\PasswordPolicyException;
 class CustomExceptionHandler {
     use ApiResponse;
     public function register(Exceptions $exceptions): void {
@@ -59,6 +60,12 @@ class CustomExceptionHandler {
                     'Resource not found',
                     null,
                     Response::HTTP_NOT_FOUND
+                ),
+
+                $e instanceof PasswordPolicyException => $this->errorResponse(
+                    $e->getMessage(),
+                    $e->errors(),
+                    $e->statusCode()
                 ),
 
                 $e instanceof HasHttpStatusException => $this->errorResponse(

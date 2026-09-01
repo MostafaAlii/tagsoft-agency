@@ -7,7 +7,7 @@ namespace Authentication\Http\Requests;
 use Authentication\Contracts\PasswordPolicyInterface;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResetPasswordRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,9 +17,8 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'    => ['required', 'email'],
-            'token'    => ['required', 'string'],
-            'password' => [
+            'current_password' => ['required', 'string'],
+            'new_password' => [
                 ...app(PasswordPolicyInterface::class)->rules(),
                 'confirmed',
             ],

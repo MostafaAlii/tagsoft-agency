@@ -2,9 +2,9 @@
 declare(strict_types=1);
 namespace Authentication\Http\Controllers;
 use Core\Http\Controllers\BaseController;
-use Authentication\Actions\{LoginAction, LogoutAction, MeAction, RefreshTokenAction};
-use Authentication\Dtos\LoginDTO;
-use Authentication\Http\Requests\LoginRequest;
+use Authentication\Actions\{LoginAction, LogoutAction, MeAction, RefreshTokenAction, ChangePasswordAction};
+use Authentication\DTOs\{LoginDTO, ChangePasswordDTO};
+use Authentication\Http\Requests\{LoginRequest, ChangePasswordRequest};
 use Authentication\Strategies\EmployeeGuardStrategy;
 final class EmployeeAuthController extends BaseController {
     public function __construct(
@@ -30,5 +30,12 @@ final class EmployeeAuthController extends BaseController {
     public function me(MeAction $action) {
         $user = $action->handle($this->strategy);
         return $this->successResponse($user, 'User retrieved successfully');
+    }
+
+    public function changePassword(ChangePasswordRequest $request, ChangePasswordAction $action)
+    {
+        $dto = ChangePasswordDTO::fromArray($request->validated());
+        $action->handle($dto, $this->strategy);
+        return $this->successResponse(null, trans('authentication::general\account_status.password_changed_success'));
     }
 }

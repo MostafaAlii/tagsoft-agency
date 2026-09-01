@@ -17,6 +17,10 @@ class AuthenticationServiceProvider extends ServiceProvider {
             \Authentication\Contracts\PasswordManagerInterface::class,
             \Authentication\Services\PasswordManager::class
         );
+        $this->app->bind(
+            \Authentication\Contracts\PasswordPolicyInterface::class,
+            \Authentication\Services\PasswordPolicy::class
+        );
     }
 
     public function boot(): void {
