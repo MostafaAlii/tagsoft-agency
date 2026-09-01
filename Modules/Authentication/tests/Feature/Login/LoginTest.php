@@ -73,7 +73,7 @@ it('rejects login for an inactive account', function (string $guard, string $mod
         ->assertStatus(403)
         ->assertJson([
             'status'  => false,
-            'message' => trans('auth.account_inactive'),
+            'message' => trans('authentication::general\account_status.account_inactive'),
         ]);
 })->with([AuthenticationTestCase::class, 'guardsDataset']);
 
@@ -92,7 +92,7 @@ it('rejects login for a suspended account', function (string $guard, string $mod
         ->assertStatus(403)
         ->assertJson([
             'status'  => false,
-            'message' => trans('auth.account_suspended'),
+            'message' => trans('authentication::general\account_status.account_suspended'),
         ]);
 })->with([AuthenticationTestCase::class, 'guardsDataset']);
 

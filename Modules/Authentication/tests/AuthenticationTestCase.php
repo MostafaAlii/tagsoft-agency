@@ -6,10 +6,12 @@ namespace Authentication\Tests;
 
 use Domains\User\Models\{Admin, Client, Employee};
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 abstract class AuthenticationTestCase extends TestCase
 {
+    use RefreshDatabase;
     protected function loginAndGetToken(string $guard, string $modelClass): array
     {
         $user = $modelClass::factory()->create([
