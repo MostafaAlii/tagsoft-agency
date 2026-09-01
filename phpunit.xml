@@ -7,14 +7,19 @@
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
+            <directory>Modules/*/tests/Unit</directory>
+            <directory>app/Domains/*/tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
+            <directory>Modules/*/tests/Feature</directory>
+            <directory>app/Domains/*/tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>app</directory>
+            <directory>Modules</directory>
         </include>
     </source>
     <php>
@@ -32,5 +37,7 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="JWT_SECRET" value="test-secret-key-for-testing-only-do-not-use-in-production"/>
+        <env name="JWT_TTL" value="60"/>
     </php>
 </phpunit>
