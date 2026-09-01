@@ -6,7 +6,17 @@ use Illuminate\Support\ServiceProvider;
 class AuthenticationServiceProvider extends ServiceProvider {
     protected string $moduleName = 'Authentication';
     public function register(): void {
-        //
+        $this->app->bind(
+            \Authentication\Contracts\PasswordBrokerInterface::class,
+            fn() => new \Authentication\Services\PasswordBroker(
+                expireMinutes: (int) config('auth.passwords.admins.expire', 60),
+                throttleSeconds: (int) config('auth.passwords.admins.throttle', 60),
+            )
+        );
+        $this->app->bind(
+            \Authentication\Contracts\PasswordManagerInterface::class,
+            \Authentication\Services\PasswordManager::class
+        );
     }
 
     public function boot(): void {

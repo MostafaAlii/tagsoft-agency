@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
-use Authentication\Http\Controllers\{AdminAuthController, ClientAuthController, EmployeeAuthController};
-
+use Authentication\Http\Controllers\{PasswordController,AdminAuthController, ClientAuthController, EmployeeAuthController};
+use Core\Enums\AuthGuardEnum;
 Route::prefix('admin')->group(function () {
     Route::post('login', [AdminAuthController::class, 'login']);
     Route::middleware('jwt.custom:admin')->group(function () {
@@ -28,4 +28,9 @@ Route::prefix('employee')->group(function () {
         Route::post('refresh', [EmployeeAuthController::class, 'refresh']);
         Route::get('me', [EmployeeAuthController::class, 'me']);
     });
+});
+
+Route::prefix('{guard}')->whereIn('guard', AuthGuardEnum::values())->group(function () {
+    Route::post('forgot-password', [PasswordController::class, 'forgot']);
+    Route::post('reset-password', [PasswordController::class, 'reset']);
 });
