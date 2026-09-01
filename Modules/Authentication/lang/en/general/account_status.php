@@ -11,4 +11,5 @@ return [
     'password_policy_failed' => 'The password does not meet the security requirements.',
     'current_password_incorrect' => 'The current password is incorrect.',
     'password_changed_success' => 'Your password has been changed successfully.',
+    'new_password_same_as_current' => 'The new password must be different from your current password.',
 ];

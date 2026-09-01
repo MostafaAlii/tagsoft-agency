@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Authentication\Actions;
 
 use Authentication\DTOs\ChangePasswordDTO;
-use Authentication\Exceptions\{CurrentPasswordIncorrectException, PasswordPolicyException};
+use Authentication\Exceptions\{CurrentPasswordIncorrectException, NewPasswordSameAsCurrentException};
 use Authentication\Strategies\Contracts\AuthGuardStrategyInterface;
 use Core\Actions\BaseAction;
 use Illuminate\Support\Facades\Hash;
@@ -25,6 +25,10 @@ final class ChangePasswordAction extends BaseAction
 
         if (!Hash::check($dto->currentPassword, $user->password)) {
             throw new CurrentPasswordIncorrectException();
+        }
+
+        if (Hash::check($dto->newPassword, $user->password)) {
+            throw new NewPasswordSameAsCurrentException();
         }
 
         $user->password = Hash::make($dto->newPassword);

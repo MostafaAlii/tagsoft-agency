@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tymon\JWTAuth\Exceptions\{JWTException,TokenExpiredException,TokenInvalidException};
 use Throwable;
-use Core\Contracts\HasHttpStatusException;
-use Authentication\Exceptions\PasswordPolicyException;
+use Core\Contracts\{HasHttpStatusException,HasValidationErrors};
 class CustomExceptionHandler {
     use ApiResponse;
     public function register(Exceptions $exceptions): void {
@@ -62,7 +61,7 @@ class CustomExceptionHandler {
                     Response::HTTP_NOT_FOUND
                 ),
 
-                $e instanceof PasswordPolicyException => $this->errorResponse(
+                $e instanceof HasValidationErrors && $e instanceof HasHttpStatusException => $this->errorResponse(
                     $e->getMessage(),
                     $e->errors(),
                     $e->statusCode()

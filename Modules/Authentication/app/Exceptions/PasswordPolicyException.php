@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Authentication\Exceptions;
 
-final class PasswordPolicyException extends PasswordException
+use Core\Contracts\HasValidationErrors;
+
+final class PasswordPolicyException extends PasswordException implements HasValidationErrors
 {
     public function __construct(
-        private readonly array $errors = [],
+        private readonly array $validationErrors = [],
     ) {
         parent::__construct(trans('authentication::general\account_status.password_policy_failed'));
     }
@@ -19,6 +21,6 @@ final class PasswordPolicyException extends PasswordException
 
     public function errors(): array
     {
-        return $this->errors;
+        return $this->validationErrors;
     }
 }

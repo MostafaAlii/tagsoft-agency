@@ -11,4 +11,5 @@ return [
     'password_policy_failed' => 'كلمة المرور لا تفي بمتطلبات الأمان.',
     'current_password_incorrect' => 'كلمة المرور الحالية غير صحيحة.',
     'password_changed_success' => 'تم تغيير كلمة المرور بنجاح.',
+    'new_password_same_as_current' => 'يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية.',
 ];
